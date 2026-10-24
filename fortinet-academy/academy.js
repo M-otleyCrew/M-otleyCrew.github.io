@@ -41,34 +41,15 @@ for (const button of buttons) {
 }
 
 // Stałe identyfikatory wiążą EXP z opanowanymi zadaniami, a nie liczbą kliknięć.
-const questions = [
-  { id: 'confidentiality', text: 'Osoba bez uprawnień odczytała listę klientów. Dane nadal są poprawne i dostępne. Co naruszono?', options: ['Dostępność', 'Poufność', 'Wyłącznie integralność'], correct: 1, explanation: 'Naruszono poufność: dane poznała osoba bez uprawnień. W tym scenariuszu nie opisano zmiany danych ani utraty dostępu.', lesson: 'lesson-3' },
-  { id: 'integrity', text: 'Ktoś bez zgody podmienił numer rachunku na fakturze. Który filar naruszono?', options: ['Integralność', 'Tylko dostępność', 'Żaden, skoro plik się otwiera'], correct: 0, explanation: 'Nieuprawniona zmiana dokumentu narusza integralność. Możliwość odczytu nie potwierdza poprawności treści.', lesson: 'lesson-2' },
-  { id: 'availability', text: 'Awaria zasilania wyłączyła sklep. Klienci nie mogą składać zamówień. Jaki jest bezpośredni problem?', options: ['Potwierdzona kradzież danych', 'Ujawnienie haseł', 'Brak dostępności usługi'], correct: 2, explanation: 'Naruszono dostępność. Awaria nie musi być atakiem. Sam przestój nie dowodzi wycieku danych.', lesson: 'lesson-2' },
-  { id: 'authorized-change', text: 'Uprawniona księgowa poprawia fakturę zgodnie z zatwierdzoną procedurą. Czy sama ta zmiana narusza integralność?', options: ['Tak, każda zmiana jest naruszeniem', 'Nie, opisana zmiana jest uprawniona i prawidłowa', 'Tak, bo faktura jest cyfrowa'], correct: 1, explanation: 'Integralność nie oznacza zakazu edycji. Chronimy dane przed zmianą nieuprawnioną lub niewłaściwą.', lesson: 'lesson-3' },
-  { id: 'ransomware', text: 'Napastnik zaszyfrował pliki i zablokował dostęp. Brak informacji o ich wykradzeniu. Co wynika z opisu?', options: ['Wyłącznie naruszenie poufności', 'Na pewno wykradziono wszystkie dane', 'Naruszono integralność i dostępność; kradzieży nie potwierdzono'], correct: 2, explanation: 'Nieautoryzowane szyfrowanie zmienia dane i blokuje korzystanie z nich. Naruszenie poufności wymaga dodatkowych ustaleń, np. potwierdzenia wykradzenia plików.', lesson: 'practice' }
-];
-const storageKey = 'fortinet-academy:module-01:v1';
+const moduleConfig = AcademyCatalog.find(m => m.id === document.body.dataset.module);
+const questions = moduleConfig.questions;
+const storageKey = AcademyStore.key(moduleConfig.id);
 const lessonIds = ['lesson-1', 'lesson-2', 'lesson-3'];
-const emptyProgress = () => ({ version: 1, lessons: [], earned: [], best: 0 });
-let progress = emptyProgress();
+const emptyProgress = AcademyStore.empty;
+const loaded = AcademyStore.read(moduleConfig);
+let progress = loaded.data;
 let storageAvailable = true;
-let storageWarning = '';
-try {
-  const raw = localStorage.getItem(storageKey);
-  if (raw) {
-    const saved = JSON.parse(raw);
-    if (!saved || saved.version !== 1 || !Array.isArray(saved.lessons) || !Array.isArray(saved.earned) || !Number.isInteger(saved.best) || saved.best < 0 || saved.best > questions.length) throw new Error('Invalid progress');
-    progress = {
-      version: 1,
-      lessons: [...new Set(saved.lessons.filter(id => lessonIds.includes(id)))],
-      earned: [...new Set(saved.earned.filter(id => questions.some(q => q.id === id)))],
-      best: saved.best
-    };
-  }
-} catch {
-  storageWarning = 'Nie udało się odczytać postępu. Zaczynasz od zera; kolejny zapis spróbuje go odtworzyć.';
-}
+let storageWarning = loaded.warning;
 
 const panel = document.createElement('section');
 panel.className = 'progress-panel';
@@ -83,7 +64,7 @@ quizLink.href = '#quiz';
 quizLink.textContent = '04  Quiz i sprawdzenie wiedzy';
 document.querySelector('.sidebar nav a[href="#sources"]').before(quizLink);
 const flashcardLink = document.createElement('a');
-flashcardLink.href = '#flashcards'; flashcardLink.textContent = '↳  Fiszki CIA';
+flashcardLink.href = '#flashcards'; flashcardLink.textContent = '↳  Fiszki';
 quizLink.before(flashcardLink);
 
 function showProgress() {
@@ -93,7 +74,7 @@ function showProgress() {
   const nextLesson = lessonIds.find(id => !progress.lessons.includes(id));
   continueLink.href = nextLesson ? `#${nextLesson}` : (progress.best < 4 ? '#quiz' : '#flashcards');
   continueLink.textContent = nextLesson ? `Kontynuuj: lekcja ${lessonIds.indexOf(nextLesson) + 1} →` : (progress.best < 4 ? 'Kontynuuj: quiz →' : 'Utrwal wiedzę: fiszki →');
-  document.getElementById('progress-badge').textContent = complete ? '✓ Moduł zaliczony — Obrońca podstaw' : 'Cel: trzy lekcje i quiz minimum 4/5.';
+  document.getElementById('progress-badge').textContent = complete ? '✓ Moduł zaliczony' : 'Cel: trzy lekcje i quiz minimum 4/5.';
   document.getElementById('module-progress').value = progress.lessons.length + Number(progress.best >= 4);
   document.getElementById('storage-status').textContent = storageWarning || (storageAvailable ? 'Zapis lokalny jest aktywny.' : 'Zapis jest niedostępny. Postęp zachowamy tylko do odświeżenia strony.');
   for (const id of lessonIds) {
@@ -181,9 +162,12 @@ form.addEventListener('submit', event => {
   if (correct) {
     score++;
     if (!progress.earned.includes(question.id)) progress.earned.push(question.id);
+    progress.review = progress.review.filter(id => id !== question.id);
     saveProgress();
   } else {
     mistakes.push(question);
+    if (!progress.review.includes(question.id)) progress.review.push(question.id);
+    saveProgress();
   }
   for (const input of form.querySelectorAll('input')) input.disabled = true;
   document.getElementById('quiz-check').disabled = true;

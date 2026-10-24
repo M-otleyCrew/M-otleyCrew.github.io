@@ -1,0 +1,321 @@
+'use strict';
+globalThis.AcademyCatalog = [
+  {
+    "id": "module-01",
+    "slug": "podstawy",
+    "title": "Wprowadzenie do cyberbezpieczeństwa",
+    "minutes": 12,
+    "intro": "Poufność, integralność i dostępność w pracy i domowym labie.",
+    "questions": [
+      {
+        "id": "confidentiality",
+        "text": "Osoba bez uprawnień odczytała listę klientów. Dane nadal są poprawne i dostępne. Co naruszono?",
+        "options": [
+          "Dostępność",
+          "Poufność",
+          "Wyłącznie integralność"
+        ],
+        "correct": 1,
+        "explanation": "Naruszono poufność: dane poznała osoba bez uprawnień. W tym scenariuszu nie opisano zmiany danych ani utraty dostępu.",
+        "lesson": "lesson-3"
+      },
+      {
+        "id": "integrity",
+        "text": "Ktoś bez zgody podmienił numer rachunku na fakturze. Który filar naruszono?",
+        "options": [
+          "Integralność",
+          "Tylko dostępność",
+          "Żaden, skoro plik się otwiera"
+        ],
+        "correct": 0,
+        "explanation": "Nieuprawniona zmiana dokumentu narusza integralność. Możliwość odczytu nie potwierdza poprawności treści.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "availability",
+        "text": "Awaria zasilania wyłączyła sklep. Klienci nie mogą składać zamówień. Jaki jest bezpośredni problem?",
+        "options": [
+          "Potwierdzona kradzież danych",
+          "Ujawnienie haseł",
+          "Brak dostępności usługi"
+        ],
+        "correct": 2,
+        "explanation": "Naruszono dostępność. Awaria nie musi być atakiem. Sam przestój nie dowodzi wycieku danych.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "authorized-change",
+        "text": "Uprawniona księgowa poprawia fakturę zgodnie z zatwierdzoną procedurą. Czy sama ta zmiana narusza integralność?",
+        "options": [
+          "Tak, każda zmiana jest naruszeniem",
+          "Nie, opisana zmiana jest uprawniona i prawidłowa",
+          "Tak, bo faktura jest cyfrowa"
+        ],
+        "correct": 1,
+        "explanation": "Integralność nie oznacza zakazu edycji. Chronimy dane przed zmianą nieuprawnioną lub niewłaściwą.",
+        "lesson": "lesson-3"
+      },
+      {
+        "id": "ransomware",
+        "text": "Napastnik zaszyfrował pliki i zablokował dostęp. Brak informacji o ich wykradzeniu. Co wynika z opisu?",
+        "options": [
+          "Wyłącznie naruszenie poufności",
+          "Na pewno wykradziono wszystkie dane",
+          "Naruszono integralność i dostępność; kradzieży nie potwierdzono"
+        ],
+        "correct": 2,
+        "explanation": "Nieautoryzowane szyfrowanie zmienia dane i blokuje korzystanie z nich. Naruszenie poufności wymaga dodatkowych ustaleń, np. potwierdzenia wykradzenia plików.",
+        "lesson": "practice"
+      }
+    ],
+    "lessons": [
+      {
+        "title": "Co właściwie chronimy?",
+        "body": "<p class=\"eyebrow\">LEKCJA 01 / OKOŁO 3 MIN</p><h2 id=\"title-1\">Co właściwie chronimy?</h2><p>Cyberbezpieczeństwo dotyczy ochrony cyfrowych informacji i systemów. Bezpieczeństwo informacji obejmuje też inne postacie danych, na przykład papierowy dokument. W tym module skupimy się na trzech celach tej ochrony: poufności, integralności i dostępności. <a class=\"cite\" href=\"#source-nist\">[1]</a></p>\n          <div class=\"example\"><p class=\"label\">Z ŻYCIA / FIRMOWY DYSK</p><h3>Jeden plik. Trzy różne problemy.</h3><p>Na dysku zespołu leży oferta dla klienta. Ktoś spoza firmy ją odczytuje. Ktoś zmienia numer rachunku. Albo dysk przestaje działać przed terminem wysyłki. To trzy różne skutki — i trzy różne pytania o bezpieczeństwo.</p></div>\n          <p class=\"takeaway\"><strong>Zapamiętaj:</strong> zacznij od wskazania informacji lub usługi, którą chcesz chronić. Dopiero potem wybieraj narzędzia.</p><a class=\"next\" href=\"#lesson-2\">Dalej: po co to robimy? →</a>\n        "
+      },
+      {
+        "title": "To nie tylko problem działu IT.",
+        "body": "<p class=\"eyebrow\">LEKCJA 02 / OKOŁO 3 MIN</p><h2 id=\"title-2\">To nie tylko problem działu IT.</h2><p>Wyobraź sobie poranek w małym sklepie internetowym. Klienci chcą kupować, magazyn czeka na listę paczek, a właściciel potrzebuje dostępu do zamówień. Rozważ trzy osobne sytuacje:</p>\n          <div class=\"impact-grid\"><article><span class=\"number\">01</span><h3>Wyciek adresów</h3><p>Lista klientów trafia do osoby bez uprawnień. Problemem jest ujawnienie danych.</p></article><article><span class=\"number\">02</span><h3>Zmieniony rachunek</h3><p>W fakturze ktoś podmienia konto bankowe. Dokument jest dostępny, lecz jego treść została zmieniona bez zgody.</p></article><article><span class=\"number\">03</span><h3>Przestój sklepu</h3><p>Awaria serwera blokuje zamówienia. Nie musiało dojść do włamania, by firma poniosła straty.</p></article></div>\n          <p class=\"takeaway\"><strong>Pomyśl jak inżynier:</strong> jakie skutki miałaby godzina bez dostępu do Twoich danych? A ich ujawnienie lub nieautoryzowana zmiana? Odpowiedzi pomagają ustalić priorytety.</p><a class=\"next\" href=\"#lesson-3\">Dalej: nazwijmy te trzy cele →</a>\n        "
+      },
+      {
+        "title": "Trzy filary bezpieczeństwa: CIA.",
+        "body": "<p class=\"eyebrow\">LEKCJA 03 / OKOŁO 4 MIN</p><h2 id=\"title-3\">Trzy filary bezpieczeństwa: CIA.</h2><p>CIA to skrót od <span lang=\"en\">Confidentiality, Integrity, Availability</span>. Te trzy cele pomagają opisać, co zostało naruszone. Jeden incydent może naruszyć więcej niż jeden filar. <a class=\"cite\" href=\"#source-cia\">[2]</a></p>\n          <figure class=\"cia\"><figcaption>JEDNA INFORMACJA · TRZY CELE OCHRONY</figcaption><div class=\"cia-center\">Twoje dane i usługi</div><div class=\"cia-branches\"><article><span class=\"letter\">C</span><h3>Poufność</h3><p>Kto ma prawo poznać dane?</p><small>Odczyt zgodny z uprawnieniami.</small></article><article><span class=\"letter\">I</span><h3>Integralność</h3><p>Czy dane zmieniono prawidłowo?</p><small>Ochrona przed nieuprawnioną zmianą lub zniszczeniem.</small></article><article><span class=\"letter\">A</span><h3>Dostępność</h3><p>Czy skorzystasz z nich na czas?</p><small>Niezawodny dostęp dla uprawnionych osób.</small></article></div></figure>\n          <div class=\"example\"><p class=\"label\">TWÓJ LAB / BACKUP</p><h3>Kopia jest. Ale czy da się odtworzyć?</h3><p>W wyobrażonym labie masz kopię maszyny wirtualnej. Przywrócenie działającej usługi pomaga odzyskać dostępność. Jeśli kopia zawiera już błędne dane, samo odtworzenie nie rozwiąże problemu integralności. Jeżeli ktoś skopiuje backup bez zgody, zagrożona jest poufność.</p></div>\n          <p class=\"takeaway\"><strong>Ważne rozróżnienie:</strong> legalna edycja pliku nie narusza integralności. Problemem jest zmiana niewłaściwa lub nieuprawniona. <a class=\"cite\" href=\"#source-cia\">[2]</a></p>\n        "
+      }
+    ]
+  },
+  {
+    "id": "module-02",
+    "slug": "zagrozenia",
+    "title": "Krajobraz zagrożeń",
+    "minutes": 15,
+    "intro": "Rozpoznaj sprawcę, słaby punkt i możliwy skutek. Naucz się wybierać priorytety, zanim wybierzesz narzędzie.",
+    "objective": "Odróżnisz zagrożenie od podatności i ryzyka oraz uzasadnisz kolejność działań w prostym scenariuszu.",
+    "lessons": [
+      {
+        "title": "Kto atakuje i po co?",
+        "body": "<p>W analizie zagrożeń spotkasz cyberprzestępczość, cyberszpiegostwo i haktywizm. To różne motywacje, a nie nazwy konkretnych technik. CERT-EU opisuje także wykorzystywanie podatności oraz socjotechnikę wykraczającą poza pocztę e-mail. <a href=\"#src-cert\">[1]</a></p><div class=\"impact-grid\"><article><h3>Zysk</h3><p>W naszym przykładzie oszust chce przejąć płatność za dostawę.</p></article><article><h3>Informacja</h3><p>W innym scenariuszu celem jest plan nowego produktu, bez zatrzymania firmy.</p></article><article><h3>Rozgłos</h3><p>W kolejnym scenariuszu grupa chce nagłośnić protest przez niedostępność strony.</p></article></div><div class=\"example\"><p class=\"label\">AUTORSKI SCENARIUSZ / FIRMA HANDLOWA</p><h3>Ta sama firma, różne cele.</h3><p>Do księgowej trafia prośba o zmianę rachunku, dział projektowy dostaje nieoczekiwany załącznik, a sklep przestaje odpowiadać. Nie zakładaj jednego sprawcy. Zapisz oddzielnie obserwacje i hipotezy. Sam komunikat z żądaniem pieniędzy nie wyjaśnia jeszcze sposobu wejścia do systemu.</p></div><p class=\"takeaway\"><strong>Zapamiętaj:</strong> motyw, metoda i skutek to trzy różne pytania. Atrybucja wymaga dowodów; nie zgaduj sprawcy po wyglądzie wiadomości.</p>"
+      },
+      {
+        "title": "Zagrożenie, podatność i ryzyko",
+        "body": "<p>Zagrożenie to okoliczność lub zdarzenie mogące wyrządzić szkodę. Podatność jest słabością, którą można wykorzystać. Oceniając ryzyko, uwzględnia się prawdopodobieństwo i możliwy wpływ. <a href=\"#src-threat\">[2]</a> <a href=\"#src-vulnerability\">[3]</a> <a href=\"#src-risk\">[4]</a></p><figure class=\"diagram\"><figcaption>MODEL DO ANALIZY, NIE WZÓR MATEMATYCZNY</figcaption><div class=\"diagram-grid\"><article><strong>Zagrożenie</strong><p>Próba włamania</p></article><article><strong>Podatność</strong><p>Błąd w wystawionej usłudze</p></article><article><strong>Skutek</strong><p>Utrata dostępu do zamówień</p></article></div><p>Ryzyko: jak realny jest scenariusz i jak dotkliwy byłby dla tej firmy?</p></figure><div class=\"example\"><p class=\"label\">AUTORSKI SCENARIUSZ / DOMOWY LAB</p><h3>Otwarty port nie oznacza automatycznie włamania.</h3><p>Udostępniasz usługę WWW. Sam nasłuch portu jest zamierzoną funkcją. Znana, możliwa do wykorzystania luka w tej usłudze byłaby podatnością. Próba jej wykorzystania to działanie napastnika. Oceń też, do czego usługa ma dostęp i co stracisz przy jej przejęciu. Nie każda ekspozycja oznacza taki sam poziom ryzyka.</p></div><p class=\"takeaway\"><strong>Przećwicz:</strong> wybierz jedną usługę w swoim labie. Wypisz jej przeznaczenie, możliwą słabość i skutek awarii lub przejęcia. Nie testuj cudzych systemów.</p>"
+      },
+      {
+        "title": "Jak ustalić pierwszy ruch?",
+        "body": "<p>CERT-EU wskazuje aktualizowanie systemów dostępnych z internetu jako ważny priorytet na podstawie analizowanych incydentów. To wskazówka oparta na określonej próbie, a nie dowód, że każda firma ma identyczne zagrożenia. <a href=\"#src-cert\">[1]</a></p><div class=\"example\"><p class=\"label\">AUTORSKI WARSZTAT / DWA ZADANIA</p><h3>Gdzie zaczniesz?</h3><p>Masz godzinę. System obsługi zamówień jest dostępny z internetu i ma potwierdzoną lukę, dla której producent opublikował poprawkę. Drugi problem to literówka w wewnętrznej instrukcji. W tym scenariuszu pilniejsza jest ocena i ograniczenie ekspozycji systemu zamówień. Zaplanuj aktualizację z możliwością odtworzenia i sprawdź działanie usługi po zmianie.</p></div><details><summary>Dlaczego nie wystarczy powiedzieć „mam backup”?</summary><p>Backup pomaga odzyskać dane lub usługę. Nie cofa ujawnienia tajemnicy i nie usuwa przyczyny włamania. Wróć do trzech filarów CIA. Ochrona, wykrywanie i odtwarzanie pełnią różne role w naszym scenariuszu.</p></details><p class=\"takeaway\"><strong>Twój mini-plan:</strong> wskaż zasób, zbierz fakty, opisz skutek, wybierz działanie i sprawdź jego efekt. Zapisz też to, czego jeszcze nie wiesz.</p>"
+      }
+    ],
+    "flashcards": [
+      [
+        "Motyw ≠ technika",
+        "Cel finansowy nie mówi, czy sprawca użył phishingu, luki czy skradzionego konta."
+      ],
+      [
+        "Podatność ≠ incydent",
+        "Słabość może istnieć bez potwierdzonego wykorzystania. Oddziel obserwacje od hipotez."
+      ],
+      [
+        "Priorytet działania",
+        "Rozważ prawdopodobieństwo, wpływ i ekspozycję konkretnego zasobu. Nie kieruj się wyłącznie głośnym nagłówkiem."
+      ]
+    ],
+    "questions": [
+      {
+        "id": "motive",
+        "text": "Oszust chce przekierować płatność na swoje konto. Co opisuje cel finansowy?",
+        "options": [
+          "Motyw sprawcy",
+          "Dokładną nazwę wykorzystanej luki",
+          "Dowód, że użył ransomware"
+        ],
+        "correct": 0,
+        "explanation": "Zysk jest motywem w tym scenariuszu. Nie określa sam w sobie metody.",
+        "lesson": "lesson-1"
+      },
+      {
+        "id": "weakness",
+        "text": "Potwierdzony błąd usługi pozwala osobie bez uprawnień odczytać pliki. Czym jest ten błąd?",
+        "options": [
+          "Wyłącznie skutkiem biznesowym",
+          "Podatnością",
+          "Zawsze dowodem włamania"
+        ],
+        "correct": 1,
+        "explanation": "To słabość możliwa do wykorzystania. Samo istnienie błędu nie dowodzi wykorzystania.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "risk",
+        "text": "Dwie firmy mają tę samą lukę. Jedna usługa obsługuje krytyczne zamówienia, druga to odizolowany test. Co oceniasz dodatkowo?",
+        "options": [
+          "Tylko nazwę producenta",
+          "Wyłącznie liczbę otwartych portów",
+          "Ekspozycję, prawdopodobieństwo i wpływ na daną firmę"
+        ],
+        "correct": 2,
+        "explanation": "Kontekst zasobu zmienia ocenę ryzyka; identyczna luka nie musi mieć identycznego wpływu.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "priority",
+        "text": "W opisanym warsztacie co wymaga pilniejszej oceny: znana luka w publicznym systemie zamówień czy literówka w instrukcji?",
+        "options": [
+          "Zawsze literówka",
+          "Luka w publicznym systemie zamówień",
+          "Nie trzeba nic robić, bo istnieje backup"
+        ],
+        "correct": 1,
+        "explanation": "W tym scenariuszu luka zagraża ważnej usłudze. Backup nie usuwa źródła zagrożenia.",
+        "lesson": "lesson-3"
+      },
+      {
+        "id": "evidence",
+        "text": "W logu jest próba połączenia z usługą. Czy to wystarczy, aby ogłosić przejęcie systemu?",
+        "options": [
+          "Tak, każde połączenie oznacza włamanie",
+          "Tak, jeśli port jest publiczny",
+          "Nie; potrzeba dowodów i dalszej analizy"
+        ],
+        "correct": 2,
+        "explanation": "Oddziel próbę dostępu od potwierdzonego naruszenia. Zbieraj i interpretuj fakty.",
+        "lesson": "lesson-1"
+      }
+    ],
+    "sources": [
+      [
+        "src-cert",
+        "CERT-EU — Threat Landscape Report 2025",
+        "https://cert.europa.eu/publications/threat-intelligence/tlr2025"
+      ],
+      [
+        "src-threat",
+        "NIST — Threat",
+        "https://csrc.nist.gov/glossary/term/threat"
+      ],
+      [
+        "src-vulnerability",
+        "NIST — Vulnerability",
+        "https://csrc.nist.gov/glossary/term/vulnerability"
+      ],
+      [
+        "src-risk",
+        "NIST — Risk",
+        "https://csrc.nist.gov/glossary/term/risk"
+      ]
+    ]
+  },
+  {
+    "id": "module-03",
+    "slug": "socjotechnika",
+    "title": "Socjotechnika i phishing",
+    "minutes": 15,
+    "intro": "Zatrzymaj automatyczną reakcję. Sprawdź, czego chce nadawca i jak bezpiecznie potwierdzić prośbę.",
+    "objective": "Rozpoznasz sygnały ostrzegawcze i wybierzesz bezpieczny sposób weryfikacji podejrzanej prośby.",
+    "lessons": [
+      {
+        "title": "Presja zamiast technicznej magii",
+        "body": "<p>Phishing wykorzystuje podszywanie się i nakłanianie odbiorcy do działania, np. podania informacji lub otwarcia szkodliwego załącznika. Podejrzaną pilną prośbę warto sprawdzić przez znany, niezależny kontakt. <a href=\"#src-phishing\">[1]</a></p><div class=\"example message\"><p class=\"label\">FIKCYJNA WIADOMOŚĆ / NIE KLIKAJ — TO TEKST</p><h3>„Szef: potrzebuję przelewu w 10 minut”</h3><p>Od: Dyrektor &lt;pilne@biuro.example&gt;</p><blockquote>Jestem na spotkaniu. Przelej 4800 zł na nowy rachunek. Nie dzwoń, wyjaśnię później.</blockquote><p>W naszym ćwiczeniu presja czasu i blokowanie weryfikacji mają skłonić do pominięcia procedury. Sama pilność nie dowodzi oszustwa. Weryfikacja jest potrzebna właśnie dlatego, że nie masz pewności.</p></div><p class=\"takeaway\"><strong>Twoja odpowiedź:</strong> „Potwierdzę tę zmianę przez ustalony kanał”. Nie używaj numeru podanego dopiero w podejrzanej wiadomości.</p>"
+      },
+      {
+        "title": "Czytaj żądanie, nie tylko logo",
+        "body": "<p>W analizie CERT-EU socjotechnika obejmuje też kanały głosowe i inne mechanizmy poza e-mailem. Rozpoznawalna nazwa nadawcy nie zastępuje potwierdzenia żądania. <a href=\"#src-cert\">[2]</a></p><figure class=\"diagram\"><figcaption>PYTANIA DO KAŻDEJ NIETYPOWEJ PROŚBY</figcaption><div class=\"diagram-grid\"><article><strong>Kto?</strong><p>Czy znam i potwierdziłem kontakt?</p></article><article><strong>Czego chce?</strong><p>Hasła, płatności, instalacji czy dostępu?</p></article><article><strong>Jak sprawdzę?</strong><p>Znanym kanałem, bez linku z wiadomości.</p></article></div></figure><div class=\"example\"><p class=\"label\">FIKCYJNY SMS / DOMENA TESTOWA</p><h3>„Dopłać 1,49 zł, inaczej paczka wróci”</h3><p><code>https://paczka.example/doplata</code> to wyłącznie tekst szkoleniowy. Otwórz samodzielnie znaną aplikację dostawcy i sprawdź przesyłkę. Nie przesądzaj autentyczności po poprawnej polszczyźnie ani estetyce strony.</p></div><details><summary>Wiadomość nie ma literówek. Czy jest bezpieczna?</summary><p>Brak błędów językowych nie potwierdza tożsamości nadawcy. W naszym przykładzie decyduje weryfikacja konkretnej prośby, a nie ocena stylu pisania.</p></details>"
+      },
+      {
+        "title": "Zatrzymaj, potwierdź, zgłoś",
+        "body": "<p>NIST zaleca ostrożność wobec niespodziewanych próśb i niezależny kontakt, a nie korzystanie z danych kontaktowych dostarczonych przez podejrzaną wiadomość. <a href=\"#src-phishing\">[1]</a> CERT Polska umożliwia zgłoszenie incydentu przez oficjalny formularz; podejrzany SMS można przekazać na 8080. <a href=\"#src-certpl\">[3]</a></p><div class=\"example\"><p class=\"label\">AUTORSKI SCENARIUSZ / KSIĘGOWOŚĆ</p><h3>Dostawca zmienia rachunek</h3><p>Nie odpowiadaj automatycznie „OK”. Odszukaj dotychczasowy kontakt w znanej dokumentacji, potwierdź zmianę i zastosuj firmową procedurę akceptacji. Jeżeli prośba okazuje się podejrzana, zgłoś ją właściwemu zespołowi w firmie. Nie przesyłaj poufnych danych firmy do publicznego formularza bez sprawdzenia zasad organizacji.</p></div><p>Jeśli podałeś hasło lub wykonałeś przelew, powiedz to od razu właściwemu zespołowi oraz — przy płatności — bankowi przez oficjalny kanał. Dalsze działania zależą od zdarzenia; nie ukrywaj pomyłki.</p><p class=\"takeaway\"><strong>Przećwicz:</strong> przygotuj teraz swój znany kontakt do IT i procedurę potwierdzania płatności. Pod presją łatwiej skorzystać z gotowej ścieżki.</p>"
+      }
+    ],
+    "flashcards": [
+      [
+        "Pilna prośba",
+        "Pilność jest sygnałem do zatrzymania i weryfikacji, nie samodzielnym dowodem oszustwa."
+      ],
+      [
+        "Niezależny kontakt",
+        "Użyj wcześniej znanego numeru lub oficjalnej aplikacji, nie kontaktu dołączonego do podejrzanej prośby."
+      ],
+      [
+        "Zgłoszenie",
+        "W pracy zastosuj firmową procedurę. Oficjalny formularz CERT Polska jest pod adresem incydent.cert.pl."
+      ]
+    ],
+    "questions": [
+      {
+        "id": "verify",
+        "text": "„Szef” prosi o przelew i zakazuje dzwonić. Co zrobisz najpierw?",
+        "options": [
+          "Wykonam przelew, bo jest pilny",
+          "Potwierdzę prośbę znanym, niezależnym kanałem",
+          "Zadzwonię wyłącznie na nowy numer z wiadomości"
+        ],
+        "correct": 1,
+        "explanation": "Weryfikacja powinna korzystać z wcześniej znanego kontaktu i firmowej procedury.",
+        "lesson": "lesson-1"
+      },
+      {
+        "id": "grammar",
+        "text": "Wiadomość jest napisana idealną polszczyzną i ma logo firmy. Co z tego wynika?",
+        "options": [
+          "Nie potwierdza to autentyczności żądania",
+          "Na pewno jest prawdziwa",
+          "Nie trzeba sprawdzać nadawcy"
+        ],
+        "correct": 0,
+        "explanation": "Styl i logo nie wystarczą do ustalenia, czy konkretna prośba jest uprawniona.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "sms",
+        "text": "SMS żąda dopłaty do paczki. Jak bezpieczniej sprawdzisz sytuację?",
+        "options": [
+          "Podam kartę w linku, bo kwota jest mała",
+          "Odeślę hasło kurierowi",
+          "Otworzę samodzielnie znaną aplikację dostawcy"
+        ],
+        "correct": 2,
+        "explanation": "Niezależne sprawdzenie przesyłki nie wymaga użycia linku z podejrzanego SMS-a.",
+        "lesson": "lesson-2"
+      },
+      {
+        "id": "report",
+        "text": "Podejrzana prośba dotyczy firmowej płatności. Co po wstrzymaniu działania?",
+        "options": [
+          "Ukryję wiadomość przed IT",
+          "Zgłoszę ją zgodnie z procedurą i potwierdzę kontakt",
+          "Opublikuję wszystkie dane firmy w internecie"
+        ],
+        "correct": 1,
+        "explanation": "Zastosuj firmową ścieżkę zgłoszenia i chroń poufne dane. Nie ignoruj zdarzenia.",
+        "lesson": "lesson-3"
+      },
+      {
+        "id": "voice",
+        "text": "Rozmówca podaje się przez telefon za IT i żąda nietypowego działania. Czy kanał głosowy wyklucza socjotechnikę?",
+        "options": [
+          "Tak, telefon zawsze potwierdza tożsamość",
+          "Tak, jeśli głos brzmi znajomo",
+          "Nie; weryfikuj nietypowe żądanie niezależnie"
+        ],
+        "correct": 2,
+        "explanation": "Socjotechnika nie ogranicza się do e-maili. Kanał kontaktu sam nie potwierdza uprawnień.",
+        "lesson": "lesson-2"
+      }
+    ],
+    "sources": [
+      [
+        "src-phishing",
+        "NIST — Phishing, Small Business Cybersecurity Corner",
+        "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing"
+      ],
+      [
+        "src-cert",
+        "CERT-EU — Threat Landscape Report 2025",
+        "https://cert.europa.eu/publications/threat-intelligence/tlr2025"
+      ],
+      [
+        "src-certpl",
+        "CERT Polska — Lista Ostrzeżeń i zgłaszanie SMS",
+        "https://cert.pl/lista-ostrzezen/"
+      ]
+    ]
+  }
+];
