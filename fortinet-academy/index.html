@@ -7,6 +7,7 @@
   <meta name="description" content="Cyberbezpieczeństwo po ludzku. Autorskie lekcje, schemat CIA i przykłady z życia — niezależny projekt edukacyjny Mateusza.">
   <title>Podstawy cyberbezpieczeństwa | Akademia Fortinet</title>
   <link rel="stylesheet" href="academy.css">
+  <link rel="stylesheet" href="progress.css">
   <script src="academy.js" defer></script>
 </head>
 <body>
@@ -46,7 +47,19 @@
           <div id="scenario-result" class="scenario-result" aria-live="polite" aria-atomic="true"><p class="label" id="scenario-pillar">C / POUFNOŚĆ</p><h3 id="scenario-title">Dane poznała nieuprawniona osoba.</h3><p id="scenario-explanation">Lista zamówień nadal działa i nie została zmieniona. W opisanej sytuacji naruszono poufność, bo ktoś bez zgody odczytał dane klientów.</p><p id="scenario-question"><strong>Pytanie do analizy:</strong> kto powinien mieć dostęp do tej listy?</p></div>
           <noscript><p>Zmiana sytuacji wymaga JavaScript. Wszystkie przykłady możesz przeczytać powyżej; poniżej znajdziesz też analizę.</p><p>Podmiana rachunku narusza integralność: ktoś zmienił dokument bez zgody. Niedostępny sklep narusza dostępność: uprawniona osoba nie może skorzystać z usługi.</p></noscript>
           <details><summary>Sprawdź zrozumienie: co z ransomware?</summary><p>W naszym przykładzie napastnik szyfruje pliki i blokuje do nich dostęp. Narusza dostępność oraz integralność, bo nieautoryzowanie zmienia dane. Jeżeli dodatkowo wykradnie pliki, naruszy też poufność. Sama informacja o szyfrowaniu nie dowodzi kradzieży danych.</p></details>
-          <div class="finish"><span aria-hidden="true">✓</span><div><h3>Podstawa opanowana?</h3><p>Spróbuj własnymi słowami wyjaśnić C, I i A na przykładzie telefonu lub firmowego dysku.</p><p class="muted">W tej wersji nie ma jeszcze quizu, EXP ani zapisu postępów.</p></div></div>
+          <div class="finish"><span aria-hidden="true">✓</span><div><h3>Podstawa opanowana?</h3><p>Spróbuj własnymi słowami wyjaśnić C, I i A na przykładzie telefonu lub firmowego dysku.</p><p class="muted">Przejdź do quizu poniżej i sprawdź, co zostało w głowie.</p></div></div>
+        </section>
+        <section class="lesson" id="quiz" aria-labelledby="quiz-title">
+          <p class="eyebrow">MISJA KONTROLNA / 5 PYTAŃ</p><h2 id="quiz-title">Sprawdź swój instynkt obrońcy.</h2>
+          <p>Autorski quiz do tej lekcji, nie pytania z egzaminu Fortinet. Wybierz jedną odpowiedź. Po sprawdzeniu zobaczysz wyjaśnienie i odnośnik do lekcji. Zaliczenie: co najmniej 4 z 5 poprawnych odpowiedzi w jednej próbie.</p>
+          <div id="quiz-app" hidden>
+            <p class="label" id="quiz-counter"></p>
+            <form id="quiz-form"><fieldset id="quiz-fieldset"><legend id="quiz-question" tabindex="-1"></legend><div id="quiz-options"></div></fieldset><button class="button" id="quiz-check" type="submit">Sprawdź odpowiedź</button></form>
+            <div id="quiz-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+            <button class="button" id="quiz-next" type="button" hidden>Następne pytanie →</button>
+            <div id="quiz-result" hidden tabindex="-1"><h3 id="quiz-result-title"></h3><p id="quiz-result-text"></p><button class="button" id="quiz-retry" type="button">Spróbuj ponownie</button></div>
+          </div>
+          <noscript><p>Quiz i punkty wymagają JavaScript. Możesz nadal korzystać z lekcji, schematu i ćwiczeń powyżej.</p></noscript>
         </section>
         <section class="lesson sources" id="sources" aria-labelledby="sources-title"><p class="eyebrow">WIEDZA Z PODPARCIEM</p><h2 id="sources-title">Źródła i granice modułu.</h2><ol><li id="source-nist"><a href="https://csrc.nist.gov/glossary/term/information_security">NIST CSRC — Information security ↗</a><p>Podstawa definicji bezpieczeństwa informacji i celów ochrony.</p></li><li id="source-cia"><a href="https://www.nccoe.nist.gov/publication/1800-26/VolA/1800-26A.html">NIST SP 1800-26, Executive Summary ↗</a><p>Definicje CIA oraz kontekst integralności danych i ransomware.</p></li><li><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/og-nse-program.pdf">Fortinet — NSE Training &amp; Certification Program Ordering Guide ↗</a><p>Kontekst ścieżki NSE 1: Cybersecurity and Cloud Fundamentals. Ten moduł obejmuje jedynie wprowadzenie, nie cały kurs.</p></li></ol><p>Weryfikacja źródeł: <time datetime="2026-10-24">24.10.2026</time>. Definicje przedstawiono własnymi słowami. Scenariusze, analogie i schemat są autorskimi materiałami dydaktycznymi. Spis tematów z pliku <code>nse 1.txt</code> wyznacza kolejność lekcji, nie stanowi źródła ich treści.</p><div class="disclaimer"><strong>Niezależny projekt edukacyjny.</strong> Nie jest oficjalnym kursem Fortinet ani bankiem pytań egzaminacyjnych. Nie gwarantuje zgodności z pełnym zakresem egzaminu ani jego zdania. Fortinet i NSE to oznaczenia ich właściciela.</div></section>
       </div>
