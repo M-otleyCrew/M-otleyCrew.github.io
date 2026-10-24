@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1118">
+  <meta name="description" content="Cyberbezpieczeństwo po ludzku. Autorskie lekcje, schemat CIA i przykłady z życia — niezależny projekt edukacyjny Mateusza.">
+  <title>Podstawy cyberbezpieczeństwa | Akademia Fortinet</title>
+  <link rel="stylesheet" href="academy.css">
+  <script src="academy.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Przejdź do lekcji</a>
+  <header class="topbar wrap">
+    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">F<span>.</span></span><span>AKADEMIA<br><strong>FORTINET</strong></span></a>
+    <a class="back" href="../">← Portfolio Mateusza</a>
+  </header>
+  <main id="content" class="wrap">
+    <section class="hero" aria-labelledby="module-title">
+      <div><p class="eyebrow">ŚCIEŻKA PODSTAWOWA / MODUŁ 01</p>
+        <h1>Zrozum zagrożenie.<br><span>Chroń to, co ważne.</span></h1>
+        <p class="lead" id="module-title">Wprowadzenie do cyberbezpieczeństwa — bez żargonu, za to z przykładami, które znasz z pracy i domu.</p>
+        <div class="meta"><span>3 krótkie lekcje</span><span>około 12 minut</span><span>poziom: od podstaw</span></div>
+        <a class="button" href="#lesson-1">Zaczynam naukę <span aria-hidden="true">↘</span></a>
+      </div>
+      <aside class="mission"><p class="eyebrow">TWOJA MISJA</p><span class="mission-mark" aria-hidden="true">01</span><h2>Myśl jak obrońca.</h2><p>Po tym module rozpoznasz, czy incydent zagraża poufności, integralności czy dostępności informacji.</p><span class="tag">Od teorii do sytuacji z życia</span></aside>
+    </section>
+    <div class="course-layout">
+      <aside class="sidebar"><nav aria-label="Lekcje modułu"><p class="eyebrow">PLAN MODUŁU</p><a href="#lesson-1"><span>01</span> Co właściwie chronimy?</a><a href="#lesson-2"><span>02</span> Dlaczego to ma znaczenie?</a><a href="#lesson-3"><span>03</span> Trzy filary: CIA</a><a href="#practice"><span>↳</span> Przećwicz na przykładzie</a><a href="#sources"><span>↗</span> Źródła i zakres</a></nav><p class="sidebar-note">Najpierw zrozumienie.<br>Potem nazwy i skróty.</p></aside>
+      <div class="lessons">
+        <section class="lesson" id="lesson-1" aria-labelledby="title-1"><p class="eyebrow">LEKCJA 01 / OKOŁO 3 MIN</p><h2 id="title-1">Co właściwie chronimy?</h2><p>Cyberbezpieczeństwo dotyczy ochrony cyfrowych informacji i systemów. Bezpieczeństwo informacji obejmuje też inne postacie danych, na przykład papierowy dokument. W tym module skupimy się na trzech celach tej ochrony: poufności, integralności i dostępności. <a class="cite" href="#source-nist">[1]</a></p>
+          <div class="example"><p class="label">Z ŻYCIA / FIRMOWY DYSK</p><h3>Jeden plik. Trzy różne problemy.</h3><p>Na dysku zespołu leży oferta dla klienta. Ktoś spoza firmy ją odczytuje. Ktoś zmienia numer rachunku. Albo dysk przestaje działać przed terminem wysyłki. To trzy różne skutki — i trzy różne pytania o bezpieczeństwo.</p></div>
+          <p class="takeaway"><strong>Zapamiętaj:</strong> zacznij od wskazania informacji lub usługi, którą chcesz chronić. Dopiero potem wybieraj narzędzia.</p><a class="next" href="#lesson-2">Dalej: po co to robimy? →</a>
+        </section>
+        <section class="lesson" id="lesson-2" aria-labelledby="title-2"><p class="eyebrow">LEKCJA 02 / OKOŁO 3 MIN</p><h2 id="title-2">To nie tylko problem działu IT.</h2><p>Wyobraź sobie poranek w małym sklepie internetowym. Klienci chcą kupować, magazyn czeka na listę paczek, a właściciel potrzebuje dostępu do zamówień. Rozważ trzy osobne sytuacje:</p>
+          <div class="impact-grid"><article><span class="number">01</span><h3>Wyciek adresów</h3><p>Lista klientów trafia do osoby bez uprawnień. Problemem jest ujawnienie danych.</p></article><article><span class="number">02</span><h3>Zmieniony rachunek</h3><p>W fakturze ktoś podmienia konto bankowe. Dokument jest dostępny, lecz jego treść została zmieniona bez zgody.</p></article><article><span class="number">03</span><h3>Przestój sklepu</h3><p>Awaria serwera blokuje zamówienia. Nie musiało dojść do włamania, by firma poniosła straty.</p></article></div>
+          <p class="takeaway"><strong>Pomyśl jak inżynier:</strong> jakie skutki miałaby godzina bez dostępu do Twoich danych? A ich ujawnienie lub nieautoryzowana zmiana? Odpowiedzi pomagają ustalić priorytety.</p><a class="next" href="#lesson-3">Dalej: nazwijmy te trzy cele →</a>
+        </section>
+        <section class="lesson" id="lesson-3" aria-labelledby="title-3"><p class="eyebrow">LEKCJA 03 / OKOŁO 4 MIN</p><h2 id="title-3">Trzy filary bezpieczeństwa: CIA.</h2><p>CIA to skrót od <span lang="en">Confidentiality, Integrity, Availability</span>. Te trzy cele pomagają opisać, co zostało naruszone. Jeden incydent może naruszyć więcej niż jeden filar. <a class="cite" href="#source-cia">[2]</a></p>
+          <figure class="cia"><figcaption>JEDNA INFORMACJA · TRZY CELE OCHRONY</figcaption><div class="cia-center">Twoje dane i usługi</div><div class="cia-branches"><article><span class="letter">C</span><h3>Poufność</h3><p>Kto ma prawo poznać dane?</p><small>Odczyt zgodny z uprawnieniami.</small></article><article><span class="letter">I</span><h3>Integralność</h3><p>Czy dane zmieniono prawidłowo?</p><small>Ochrona przed nieuprawnioną zmianą lub zniszczeniem.</small></article><article><span class="letter">A</span><h3>Dostępność</h3><p>Czy skorzystasz z nich na czas?</p><small>Niezawodny dostęp dla uprawnionych osób.</small></article></div></figure>
+          <div class="example"><p class="label">TWÓJ LAB / BACKUP</p><h3>Kopia jest. Ale czy da się odtworzyć?</h3><p>W wyobrażonym labie masz kopię maszyny wirtualnej. Przywrócenie działającej usługi pomaga odzyskać dostępność. Jeśli kopia zawiera już błędne dane, samo odtworzenie nie rozwiąże problemu integralności. Jeżeli ktoś skopiuje backup bez zgody, zagrożona jest poufność.</p></div>
+          <p class="takeaway"><strong>Ważne rozróżnienie:</strong> legalna edycja pliku nie narusza integralności. Problemem jest zmiana niewłaściwa lub nieuprawniona. <a class="cite" href="#source-cia">[2]</a></p>
+        </section>
+        <section class="lesson practice" id="practice" aria-labelledby="practice-title"><p class="eyebrow">PRZEĆWICZ / BEZ PUNKTACJI</p><h2 id="practice-title">Ten sam sklep. Inny incydent.</h2><p>Wybierz sytuację i sprawdź analizę. Przykłady są autorskie i celowo uproszczone.</p>
+          <div class="scenario-buttons" role="group" aria-label="Wybierz incydent"><button type="button" data-scenario="leak" aria-pressed="true" aria-controls="scenario-result">Wyciek listy klientów</button><button type="button" data-scenario="change" aria-pressed="false" aria-controls="scenario-result">Podmiana rachunku</button><button type="button" data-scenario="outage" aria-pressed="false" aria-controls="scenario-result">Niedostępny sklep</button></div>
+          <div id="scenario-result" class="scenario-result" aria-live="polite" aria-atomic="true"><p class="label" id="scenario-pillar">C / POUFNOŚĆ</p><h3 id="scenario-title">Dane poznała nieuprawniona osoba.</h3><p id="scenario-explanation">Lista zamówień nadal działa i nie została zmieniona. W opisanej sytuacji naruszono poufność, bo ktoś bez zgody odczytał dane klientów.</p><p id="scenario-question"><strong>Pytanie do analizy:</strong> kto powinien mieć dostęp do tej listy?</p></div>
+          <noscript><p>Zmiana sytuacji wymaga JavaScript. Wszystkie przykłady możesz przeczytać powyżej; poniżej znajdziesz też analizę.</p><p>Podmiana rachunku narusza integralność: ktoś zmienił dokument bez zgody. Niedostępny sklep narusza dostępność: uprawniona osoba nie może skorzystać z usługi.</p></noscript>
+          <details><summary>Sprawdź zrozumienie: co z ransomware?</summary><p>W naszym przykładzie napastnik szyfruje pliki i blokuje do nich dostęp. Narusza dostępność oraz integralność, bo nieautoryzowanie zmienia dane. Jeżeli dodatkowo wykradnie pliki, naruszy też poufność. Sama informacja o szyfrowaniu nie dowodzi kradzieży danych.</p></details>
+          <div class="finish"><span aria-hidden="true">✓</span><div><h3>Podstawa opanowana?</h3><p>Spróbuj własnymi słowami wyjaśnić C, I i A na przykładzie telefonu lub firmowego dysku.</p><p class="muted">W tej wersji nie ma jeszcze quizu, EXP ani zapisu postępów.</p></div></div>
+        </section>
+        <section class="lesson sources" id="sources" aria-labelledby="sources-title"><p class="eyebrow">WIEDZA Z PODPARCIEM</p><h2 id="sources-title">Źródła i granice modułu.</h2><ol><li id="source-nist"><a href="https://csrc.nist.gov/glossary/term/information_security">NIST CSRC — Information security ↗</a><p>Podstawa definicji bezpieczeństwa informacji i celów ochrony.</p></li><li id="source-cia"><a href="https://www.nccoe.nist.gov/publication/1800-26/VolA/1800-26A.html">NIST SP 1800-26, Executive Summary ↗</a><p>Definicje CIA oraz kontekst integralności danych i ransomware.</p></li><li><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/og-nse-program.pdf">Fortinet — NSE Training &amp; Certification Program Ordering Guide ↗</a><p>Kontekst ścieżki NSE 1: Cybersecurity and Cloud Fundamentals. Ten moduł obejmuje jedynie wprowadzenie, nie cały kurs.</p></li></ol><p>Weryfikacja źródeł: <time datetime="2026-10-24">24.10.2026</time>. Definicje przedstawiono własnymi słowami. Scenariusze, analogie i schemat są autorskimi materiałami dydaktycznymi. Spis tematów z pliku <code>nse 1.txt</code> wyznacza kolejność lekcji, nie stanowi źródła ich treści.</p><div class="disclaimer"><strong>Niezależny projekt edukacyjny.</strong> Nie jest oficjalnym kursem Fortinet ani bankiem pytań egzaminacyjnych. Nie gwarantuje zgodności z pełnym zakresem egzaminu ani jego zdania. Fortinet i NSE to oznaczenia ich właściciela.</div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="wrap footer"><span>AKADEMIA FORTINET / PROJEKT MATEUSZA</span><a href="#content">Wróć na górę ↑</a></footer>
+</body>
+</html>
