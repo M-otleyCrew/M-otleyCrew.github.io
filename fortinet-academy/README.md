@@ -1,5 +1,13 @@
 # Moduł 01 — Wprowadzenie do cyberbezpieczeństwa
 
+Adres publiczny: https://m-otleycrew.github.io/fortinet-academy/
+
+## Zasady pracy w projekcie
+
+Właściciel upoważnił do publikowania kolejnych iteracji bez dodatkowego potwierdzania. Każda iteracja powinna obejmować kilka spójnych kroków: implementację, odpowiednią weryfikację, publikację i sprawdzenie wdrożenia. Nie kończ etapu na samym przygotowaniu PR, gdy publikacja jest możliwa. Nie rozszerza to zakresu o inne repozytoria ani usługi.
+
+Nie publikuj treści merytorycznej bez sprawdzonych źródeł. Nie usuwaj lokalnych postępów przy aktualizacjach modułu. Zmiany modelu zapisu wymagają zachowania kompatybilności lub migracji.
+
 Niezależna, autorska pomoc edukacyjna. Nie jest oficjalnym kursem Fortinet.
 
 ## Uruchomienie
