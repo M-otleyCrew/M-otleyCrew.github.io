@@ -22,6 +22,9 @@ Pliki są statyczne, bez zależności, usług zewnętrznych, analityki i procesu
 - Interaktywny wybór trzech incydentów i odpowiedź o ransomware w details.
 - Treść i nawigacja dostępne także bez JavaScript.
 - Quiz: 5 autorskich pytań z wyjaśnieniami i powrotem do lekcji, próg zaliczenia 4/5.
+- Kolejność odpowiedzi jest losowana przy każdym wyświetleniu pytania. Identyfikatory pytań, naliczanie EXP i istniejący zapis pozostają kompatybilne.
+- Wynik pokazuje listę błędnie rozwiązanych zadań z wyjaśnieniami i odnośnikami do powtórki; lista dotyczy bieżącej próby i nie jest zapisywana.
+- Trzy rozwijane fiszki CIA działają również bez JavaScript. Przycisk kontynuacji prowadzi do pierwszej nieukończonej lekcji, następnie quizu lub fiszek.
 - EXP: 20 za oznaczenie każdej lekcji i pierwszą poprawną odpowiedź na każde pytanie; maksymalnie 160, bez powielania przy powtórkach.
 - Postęp zapisany w localStorage pod kluczem `fortinet-academy:module-01:v1`. Zapisujemy identyfikatory ukończonych lekcji, opanowanych pytań i najlepszy wynik. Nie zapisujemy trwającej próby quizu.
 - Moduł zaliczony po oznaczeniu trzech lekcji i uzyskaniu 4/5 w jednej próbie. Punkty EXP mogą pochodzić z wielu prób.

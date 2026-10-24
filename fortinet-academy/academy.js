@@ -75,15 +75,24 @@ panel.className = 'progress-panel';
 panel.setAttribute('aria-label', 'Twój postęp w module');
 panel.innerHTML = '<div><p class="eyebrow">TWÓJ POSTĘP</p><strong id="xp-total"></strong><p id="progress-summary"></p><progress id="module-progress" max="4" value="0" aria-label="Ukończone etapy modułu"></progress></div><div><p id="progress-badge"></p><p class="progress-note">20 EXP za każdą oznaczoną lekcję i pierwszą poprawną odpowiedź na każde pytanie. Maksymalnie 160 EXP. Powtórki nie dublują punktów.</p><p class="progress-note">Postęp zostaje tylko w tej przeglądarce. Usunięcie danych witryny go skasuje. Odpowiedzi w trwającej próbie quizu nie są zapisywane.</p><p id="storage-status" role="status"></p><details><summary>Wyzeruj postęp</summary><p>Usuniesz postęp, EXP i najlepszy wynik tego modułu z tej przeglądarki.</p><button type="button" id="reset-progress">Potwierdzam: wyzeruj moduł</button></details></div>';
 document.querySelector('.course-layout').before(panel);
+const continueLink = document.createElement('a');
+continueLink.className = 'button continue-learning';
+panel.firstElementChild.append(continueLink);
 const quizLink = document.createElement('a');
 quizLink.href = '#quiz';
 quizLink.textContent = '04  Quiz i sprawdzenie wiedzy';
 document.querySelector('.sidebar nav a[href="#sources"]').before(quizLink);
+const flashcardLink = document.createElement('a');
+flashcardLink.href = '#flashcards'; flashcardLink.textContent = '↳  Fiszki CIA';
+quizLink.before(flashcardLink);
 
 function showProgress() {
   document.getElementById('xp-total').textContent = `${(progress.lessons.length + progress.earned.length) * 20} / 160 EXP`;
   document.getElementById('progress-summary').textContent = `Lekcje: ${progress.lessons.length}/3 · Najlepszy quiz: ${progress.best}/5`;
   const complete = progress.lessons.length === 3 && progress.best >= 4;
+  const nextLesson = lessonIds.find(id => !progress.lessons.includes(id));
+  continueLink.href = nextLesson ? `#${nextLesson}` : (progress.best < 4 ? '#quiz' : '#flashcards');
+  continueLink.textContent = nextLesson ? `Kontynuuj: lekcja ${lessonIds.indexOf(nextLesson) + 1} →` : (progress.best < 4 ? 'Kontynuuj: quiz →' : 'Utrwal wiedzę: fiszki →');
   document.getElementById('progress-badge').textContent = complete ? '✓ Moduł zaliczony — Obrońca podstaw' : 'Cel: trzy lekcje i quiz minimum 4/5.';
   document.getElementById('module-progress').value = progress.lessons.length + Number(progress.best >= 4);
   document.getElementById('storage-status').textContent = storageWarning || (storageAvailable ? 'Zapis lokalny jest aktywny.' : 'Zapis jest niedostępny. Postęp zachowamy tylko do odświeżenia strony.');
@@ -126,6 +135,7 @@ showProgress();
 let questionIndex = 0;
 let score = 0;
 let checked = false;
+let mistakes = [];
 const form = document.getElementById('quiz-form');
 const feedback = document.getElementById('quiz-feedback');
 const nextButton = document.getElementById('quiz-next');
@@ -143,7 +153,14 @@ function renderQuestion(focus = true) {
   legend.textContent = question.text;
   const options = document.getElementById('quiz-options');
   options.replaceChildren();
-  question.options.forEach((text, index) => {
+  // Fisher–Yates: tasujemy pozycje, zachowując oryginalne indeksy odpowiedzi.
+  const order = question.options.map((_, index) => index);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  order.forEach(index => {
+    const text = question.options[index];
     const label = document.createElement('label');
     const input = document.createElement('input');
     input.type = 'radio'; input.name = 'answer'; input.value = String(index); input.required = true;
@@ -165,6 +182,8 @@ form.addEventListener('submit', event => {
     score++;
     if (!progress.earned.includes(question.id)) progress.earned.push(question.id);
     saveProgress();
+  } else {
+    mistakes.push(question);
   }
   for (const input of form.querySelectorAll('input')) input.disabled = true;
   document.getElementById('quiz-check').disabled = true;
@@ -185,9 +204,22 @@ nextButton.addEventListener('click', () => {
   form.hidden = true; nextButton.hidden = true; result.hidden = false;
   document.getElementById('quiz-result-title').textContent = `${score}/5 — ${score >= 4 ? 'quiz zaliczony!' : 'czas na krótką powtórkę.'}`;
   document.getElementById('quiz-result-text').textContent = score >= 4 ? 'Dobra robota. Oznacz też przeczytane lekcje, aby ukończyć cały moduł. Możesz powtórzyć quiz; EXP za to samo pytanie nie naliczy się ponownie.' : 'Wróć do wyjaśnień i spróbuj jeszcze raz. Najlepszy wynik zostaje; kolejna próba może go poprawić.';
+  let review = document.getElementById('quiz-review');
+  if (!review) { review = document.createElement('div'); review.id = 'quiz-review'; document.getElementById('quiz-retry').before(review); }
+  review.replaceChildren();
+  const heading = document.createElement('h4');
+  heading.textContent = mistakes.length ? 'Twoja lista powtórek z tej próby' : 'Komplet poprawnych odpowiedzi — świetna robota.';
+  review.append(heading);
+  for (const question of mistakes) {
+    const item = document.createElement('article');
+    const title = document.createElement('p'); title.textContent = question.text;
+    const explanation = document.createElement('p'); explanation.textContent = question.explanation;
+    const link = document.createElement('a'); link.href = `#${question.lesson}`; link.textContent = 'Powtórz ten temat →';
+    item.append(title, explanation, link); review.append(item);
+  }
   result.focus();
 });
-function restartQuiz() { questionIndex = 0; score = 0; renderQuestion(); }
+function restartQuiz() { questionIndex = 0; score = 0; mistakes = []; renderQuestion(); }
 document.getElementById('quiz-retry').addEventListener('click', restartQuiz);
 document.getElementById('reset-progress').addEventListener('click', () => {
   progress = emptyProgress();
